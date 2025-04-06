@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Artistic Face Image Reenactment.">
+  <meta name="keywords" content="reenactartface, cGAN, 3DMM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReenactArtFace: Artistic Face Image Reenactment</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/linziqu/LinziQU.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ReenactArtFace: Artistic Face Image Reenactment</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Linzi Qu</a><sup>1</sup>,</span>
+            <span class="author-block">Jiaxiang Shang</a><sup>2</sup>,</span>
+            <span class="author-block">Xiaoguang Han</a><sup>3</sup>,
+            </span>
+            <span class="author-block">Hongbo Fu</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> City University of Hong Kong,</span>
+            <span class="author-block"><sup>2</sup> Hong Kong University of Science and Technology,</span>
+            <span class="author-block"><sup>3</sup> Chinese University of Hong Kong (Shenzhen)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/document/10061279?denied="
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!--<span class="link-block">
+                <a href="https://arxiv.org/pdf/2404.15889v1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>-->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1hIVI7DrYzluJYuPfmj779r0E3tmGwiGe/view?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-solid fa-file"></i>
+                  </span>
+                  <span>Supplemental Material</span>
+                </a>
+              </span>
+
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/linziqu/ReenactArtFace"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.jpg" referrerpolicy="no-referrer" alt="Teaser">
+      <h2 class="subtitle has-text-centered">
+        Our ReenactArtFace, a novel artistic face reenactment technique, is able to transfer the pose and expression from a driving video to in-the-
+        wild artistic face images to generate artistic talking heads, where the identity and texture of the original artistic images are preserved. Please refer
+        to the accompanying video for animation effects.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Large-scale datasets and deep generative models have enabled impressive progress in human face reenactment. Existing
+            solutions for face reenactment have focused on processing real face images through facial landmarks by generative models. Different
+            from real human faces, artistic human faces (e.g., those in paintings, cartoons, etc.) often involve exaggerated shapes and various
+            textures. Therefore, directly applying existing solutions to artistic faces often fails to preserve the characteristics of the original artistic
+            faces (e.g., face identity and decorative lines along face contours) due to the domain gap between real and artistic faces. To address
+            these issues, we present ReenactArtFace, the first effective solution for transferring the poses and expressions from human videos to
+            various artistic face images. We achieve artistic face reenactment in a coarse-to-fine manner. First, we perform 3D artistic face
+            reconstruction, which reconstructs a textured 3D artistic face through a 3D morphable model (3DMM) and a 2D parsing map from an
+            input artistic image. The 3DMM can not only rig the expressions better than facial landmarks but also render images under different
+            poses/expressions as coarse reenactment results robustly. However, these coarse results suffer from self-occlusions and lack contour
+            lines. Second, we thus perform artistic face refinement by using a personalized conditional adversarial generative model (cGAN)
+            fine-tuned on the input artistic image and the coarse reenactment results. For high-quality refinement, we propose a contour loss to
+            supervise the cGAN to faithfully synthesize contour lines. Quantitative and qualitative experiments demonstrate that our method
+            achieves better results than the existing solutions
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!--/ Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <img src="./static/images/whole_architecture.jpg" referrerpolicy="no-referrer" alt="Teaser">
+        <h2 class="subtitle has-text-centered">
+          An illustration of our two-stage pipeline for artistic face reenactment. It transfers the pose and expression of a real human face in a driving
+          video \(\{I_d\}\) to an input artistic face \(I_s\) (with the help of manually labeled face landmarks \(L_s\) and parsing map \(P_s\)) to get 
+          an artistic talking head \(\{\hat{I}_{s,d}\}\).
+        </h2>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <video id="reenactartface" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/reenactartface.mp4"
+                  type="video/mp4">
+        <div class="content has-text-justified">
+          <p>The video has sound.<p>
+        <div>
+        </video>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+<!--/ More results. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparisons with the Existing Methods</h2>
+    <div class="columns is-centered">
+      <img src="./static/images/compared_method.jpg" referrerpolicy="no-referrer" alt="Teaser">
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-half has-text-centered">
+        <h2 class="title is-3">Artistic Portrait Editing</h2>
+        <img src="./static/images/editing.jpg" referrerpolicy="no-referrer" alt="Teaser" style="max-width: 100%; height: auto;">
+      </div>
+      <div class="column is-half has-text-centered">
+        <h2 class="title is-3">Face Video Stylization</h2>
+        <img src="./static/images/stylization.jpg" referrerpolicy="no-referrer" alt="Teaser" style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{qu2023reenactartface,
+      title={Reenactartface: Artistic face image reenactment},
+      author={Qu, Linzi and Shang, Jiaxiang and Han, Xiaoguang and Fu, Hongbo},
+      journal={IEEE Transactions on Visualization and Computer Graphics},
+      year={2023},
+      publisher={IEEE}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the Nerfies project page. 
+            If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
